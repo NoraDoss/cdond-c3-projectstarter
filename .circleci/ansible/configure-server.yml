@@ -1,7 +1,8 @@
 ---
 
 - name: "configuration play." 
-  hosts: web
+  # hosts: web
+  hosts: all
   user: ubuntu
   become: true
   become_method: sudo
@@ -18,11 +19,8 @@
       wait_for_connection:
         timeout: 60
 
-    - name: "install python for Ansible."
+    # - name: "install python for Ansible."
       # Your code here
-      become: true
-      raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
-      changed_when: false
 
   # Get the environment variables from CircleCI and add to the EC2 instance
   environment:
