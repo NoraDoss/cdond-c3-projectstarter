@@ -197,25 +197,29 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: cimg/base:stable
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints: ["29:32:fd:ad:67:87:b7:5f:29:17:6d:28:94:0b:b1:c3"]
       - run:
-          name: Install dependencies and Install Ansible
+          name: Install dependencies
           command: |
             # Your code here
             # exit 1
-            # apt install yum
-            # yum -y install tar gzip  #install tar, gzip
-            apk add --update ansible #install ansible
-            apk add --no-cache aws-cli
-
+            # INSTALL AWS CLI
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            sudo ./aws/install
+            # INSTALL ANSIBLE
+            sudo apt update
+            sudo apt install software-properties-common -y
+            sudo add-apt-repository --yes --update ppa:ansible/ansible
+            sudo apt install ansible -y
+      - add_ssh_keys:
+          fingerprints: ["29:32:fd:ad:67:87:b7:5f:29:17:6d:28:94:0b:b1:c3"]
       # attach workspace
-      # - attach_workspace:
-      #     at: ~/
-      # - run: cat ~/project/.circleci/ansible/inventory.txt
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/project/.circleci/ansible/inventory.txt
       - run:
           name: Run Playbook and Configure server
           command: |
