@@ -207,15 +207,15 @@ jobs:
           command: |
             # Your code here
             # exit 1
-            apt install yum
-            yum -y install tar gzip  #install tar, gzip
+            # apt install yum
+            # yum -y install tar gzip  #install tar, gzip
             apk add --update ansible #install ansible
             apk add --no-cache aws-cli
 
       # attach workspace
-      - attach_workspace:
-          at: ~/
-      - run: cat ~/project/.circleci/ansible/inventory.txt
+      # - attach_workspace:
+      #     at: ~/
+      # - run: cat ~/project/.circleci/ansible/inventory.txt
       - run:
           name: Run Playbook and Configure server
           command: |
