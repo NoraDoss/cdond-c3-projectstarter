@@ -202,10 +202,6 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: ["29:32:fd:ad:67:87:b7:5f:29:17:6d:28:94:0b:b1:c3"]
-      # attach workspace
-      - attach_workspace:
-          at: ~/
-      - run: cat ~/project/.circleci/ansible/inventory.txt
       - run:
           name: Install dependencies and Install Ansible
           command: |
@@ -213,6 +209,10 @@ jobs:
             # exit 1
             yum -y install tar gzip  #install tar, gzip
             apk add --update ansible #install ansible
+      # attach workspace
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/project/.circleci/ansible/inventory.txt
       - run:
           name: Run Playbook and Configure server
           command: |
