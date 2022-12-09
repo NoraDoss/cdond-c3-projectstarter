@@ -207,7 +207,7 @@ jobs:
           command: |
             # Your code here
             # exit 1
-            sudo apt install yum
+            apt install yum
             yum -y install tar gzip  #install tar, gzip
             apk add --update ansible #install ansible
             apk add --no-cache aws-cli
