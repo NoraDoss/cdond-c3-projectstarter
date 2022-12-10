@@ -256,9 +256,9 @@ jobs:
             # Your code here
             # exit 1
             cd backend
-            npm cache clean -f
-            npm install -g n
-            n stable
+            sudo npm cache clean -f
+            sudo npm install -g n
+            sudo n stable
             # npm install
             npm audit fix
             # Run and save the migration output
