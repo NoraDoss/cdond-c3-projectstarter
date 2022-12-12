@@ -1,0 +1,18 @@
+---
+- name: "Creates directory"
+  file:
+    path: ~/backend-dir
+    state: directory
+
+- name: "Extract the backend zipped artifact into the EC2 instance"
+  unarchive:
+    src: artifact.tar.gz
+    dest: ~/backend-dir
+
+- name: "Installing npm and start app"
+  shell: |
+    cd ~/backend-dir
+    npm install
+    pm2 stop default
+    pm2 start npm -- start
+    
