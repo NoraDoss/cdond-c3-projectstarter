@@ -18,8 +18,8 @@
     cd /home/ubuntu/web
     tar -xvf artifact.tar.gz
 
-- name: "Installing npm and start app"
+- name: "start app"
   shell: |
-    cd /home/ubuntu/web
+    cd /home/ubuntu/web/backend
     pm2 stop default
     pm2 start npm -- start
