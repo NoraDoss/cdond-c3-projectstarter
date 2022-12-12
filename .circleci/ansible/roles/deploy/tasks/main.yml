@@ -1,18 +1,25 @@
 ---
-- name: "Creates directory"
-  file:
-    path: ~/backend-dir
+- name: create directory 
+  become: true
+  file: 
+    path: /home/ubuntu/web
     state: directory
+    mode: 0755
 
-- name: "Extract the backend zipped artifact into the EC2 instance"
-  unarchive:
-    src: artifact.tar.gz
-    dest: ~/backend-dir
+- name: copy artifact
+  become: true
+  copy: 
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu/web/artifact.tar.gz
+
+- name: Extract artifact files
+  become: true
+  shell: |
+    cd /home/ubuntu/web
+    tar -xvf artifact.tar.gz
 
 - name: "Installing npm and start app"
   shell: |
-    cd ~/backend-dir
-    npm install
+    cd /home/ubuntu/web
     pm2 stop default
     pm2 start npm -- start
-    
