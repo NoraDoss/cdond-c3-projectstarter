@@ -371,14 +371,13 @@ jobs:
 
   smoke-test:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: cimg/base:stable
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
-            # your code here
-            yum -y install tar gzip
+            # Your code here
             # INSTALL AWS CLI
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
@@ -386,6 +385,8 @@ jobs:
             # INSTALL NODEJS
             curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt install -y nodejs
+            # INSTALL NPM
+            npm install
       # - run:
       #     name: Get backend url
       #     command: |
