@@ -224,7 +224,7 @@ jobs:
             sudo add-apt-repository --yes --update ppa:ansible/ansible
             sudo apt install ansible -y
       - add_ssh_keys:
-          fingerprints: ["0e:49:3e:82:f0:0b:e1:98:d4:5b:c3:83:af:4d:bb:4e"]
+          fingerprints: ["c9:0d:41:21:d5:f3:8b:aa:26:e8:3c:9a:fb:ab:41:df"]
       # attach workspace
       - attach_workspace:
           at: ~/
