@@ -32,7 +32,8 @@ commands:
           when: on_fail 
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
+            # SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
+            SUCCESS=1
             if(( $SUCCESS==1 )); 
             then
               cd ~/project/backend
@@ -447,13 +448,13 @@ jobs:
             if curl -s $URL | grep "Welcome"
             then
               # Change this to 0 after the job fails
-              exit 0
+              exit 1
             else
               exit 1
             fi
       # Here's where you will add some code to rollback on failure  
       - destroy-environment  
-      # - revert-migrations
+      - revert-migrations
 
   cloudfront-update:
     docker:
