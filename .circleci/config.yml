@@ -160,12 +160,12 @@ jobs:
             #  npm audit fix --force
             #  npm audit --audit-level=critical
 
-            #  cd backend
-            #  npm install
-            #  npm audit fix --audit-level=critical --force
-            #  npm audit fix --audit-level=critical --force
-            #  npm audit fix --audit-level=critical --force
-            #  npm audit --audit-level=critical
+             cd backend
+             npm install
+             npm audit fix --audit-level=critical --force
+             npm audit fix --audit-level=critical --force
+             npm audit fix --audit-level=critical --force
+             npm audit --audit-level=critical
       - save_cache:
           paths: [backend/node_modules]
           key: backend-scan
@@ -448,7 +448,7 @@ jobs:
             if curl -s $URL | grep "Welcome"
             then
               # Change this to 0 after the job fails
-              exit 1
+              exit 0
             else
               exit 1
             fi
